@@ -1,21 +1,28 @@
-﻿using Game.Domain.GameStates;
+﻿using Game.Application.GameStates;
 using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
+using Zenject;
 
 namespace Game.Application
 {
-    public class GameStateManager
+    public class GameStateManager : IGameStateManager, IInitializable
     {
         private IGameState _currentState;
+        private SignalBus _signalBus;
 
-        public GameStateManager(IGameState currentState) 
+        public GameStateManager(SignalBus signalBus) 
         {
-            _currentState = currentState;
-            SetState(_currentState);
+            _signalBus = signalBus;
+        }
+
+        public void Initialize()
+        {
+            SetState(new StartGameState(_signalBus));
         }
 
         public void SetState(IGameState state)
@@ -24,6 +31,8 @@ namespace Game.Application
             {
                 _currentState.Exit();
             }
+
+            _currentState = state;
 
             _currentState.Enter();
         }

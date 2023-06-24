@@ -5,18 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Game.Domain.GameStates
+namespace Game.Application.GameStates
 {
-    public class MainGameState : IGameState
+    public class GameOverState : IGameState
     {
         public void Enter()
         {
-            Debug.Log("Enter MainGame");
+            Debug.Log("Enter GameOverState");
         }
 
         public void Exit()
         {
-            Debug.Log("Exit MainGame");
+            Debug.Log("Exit GameOverState");
         }
     }
 }

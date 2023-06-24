@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game.Domain.GameStates
+namespace Game.Application.Signals
 {
-    public interface IGameState
+    public class StartGameEnterSignal
     {
-        void Enter();
-        void Exit();
     }
 }
